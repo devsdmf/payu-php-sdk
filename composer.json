@@ -1,0 +1,20 @@
+{
+    "name": "devsdmf/payu-php-sdk",
+    "description": "Payu payment gateway SDK for PHP projects",
+    "keywords": ["payu","payment","gateway","sdk"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lucas Mendes",
+            "email": "devsdmf@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {},
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    }
+}
