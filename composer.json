@@ -10,7 +10,9 @@
             "email": "devsdmf@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "phpunit/phpunit": "^4.7"
+    },
     "require-dev": {},
     "autoload": {
         "psr-0": {
