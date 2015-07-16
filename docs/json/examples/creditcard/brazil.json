@@ -1,0 +1,55 @@
+{
+    "language": "es",
+    "command": "SUBMIT_TRANSACTION",
+    "merchant": {
+    "apiKey": "676k86ks53la6tni6clgd30jf6",
+        "apiLogin": "403ba744e9827f3"
+},
+    "transaction": {
+    "order": {
+        "accountId": "500719",
+            "referenceCode": "payment_test_00000001",
+            "description": "payment test",
+            "language": "es",
+            "signature": "3988c43a51f654a825bd7f203840d4a4",
+            "notifyUrl": "http://www.tes.com/confirmation",
+            "additionalValues": {
+            "TX_VALUE": {
+                "value": 100,
+                    "currency": "BRL"
+            }
+        },
+        "buyer": {
+            "merchantBuyerId": "1",
+                "fullName": "First name and second buyer  name",
+                "emailAddress": "buyer_test@test.com",
+                "contactPhone": "(11)756312633",
+                "dniNumber": "811.807.405-64",
+                "cnpj": "32593371000110",
+                "shippingAddress": {
+                "street1": "calle 100",
+                    "street2": "5555487",
+                    "city": "Sao paulo",
+                    "state": "SP",
+                    "country": "BR",
+                    "postalCode": "01019-030",
+                    "phone": "(11)756312633"
+            }
+        }
+    },
+    "creditCard": {
+        "number": "4097440000000004",
+            "securityCode": "321",
+            "expirationDate": "2014/12",
+            "name": "REJECTED"
+    },
+    "extraParameters": {
+        "INSTALLMENTS_NUMBER": 1
+    },
+    "type": "AUTHORIZATION",
+        "paymentMethod": "VISA",
+        "paymentCountry": "BR",
+        "ipAddress": "127.0.0.1"
+},
+    "test": false
+}

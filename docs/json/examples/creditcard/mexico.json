@@ -1,0 +1,83 @@
+{
+    "language": "es",
+    "command": "SUBMIT_TRANSACTION",
+    "merchant": {
+        "apiKey": "6u39nqhq8ftd0hlvnjfs66eh8c",
+        "apiLogin": "11959c415b33d0c"
+    },
+    "transaction": {
+        "order": {
+            "accountId": "500547",
+            "referenceCode": "payment_test_00000001",
+            "description": "payment test",
+            "language": "es",
+            "signature": "2b241ad76d4e4eb37cf9113fa9aae8df",
+            "notifyUrl": "http://www.tes.com/confirmation",
+            "additionalValues": {
+                "TX_VALUE": {
+                    "value": 100,
+                    "currency": "MXN"
+                }
+            },
+            "buyer": {
+                "merchantBuyerId": "1",
+                "fullName": "First name and second buyer  name",
+                "emailAddress": "buyer_test@test.com",
+                "contactPhone": "7563126",
+                "dniNumber": "5415668464654",
+                "shippingAddress": {
+                    "street1": "Calle Salvador Alvarado",
+                    "street2": "8 int 103",
+                    "city": "Guadalajara",
+                    "state": "Jalisco",
+                    "country": "MX",
+                    "postalCode": "000000",
+                    "phone": "7563126"
+                }
+            },
+            "shippingAddress": {
+                "street1": "Calle Salvador Alvarado",
+                "street2": "8 int 103",
+                "city": "Guadalajara",
+                "state": "Jalisco",
+                "country": "MX",
+                "postalCode": "0000000",
+                "phone": "7563126"
+            }
+        },
+        "payer": {
+            "merchantPayerId": "1",
+            "fullName": "First name and second payer name",
+            "emailAddress": "payer_test@test.com",
+            "birthdate": "1985-05-25",
+            "contactPhone": "7563126",
+            "dniNumber": "5415668464654",
+            "billingAddress": {
+                "street1": "Calle Zaragoza esquina",
+                "street2": "calle 5 de Mayo",
+                "city": "Monterrey",
+                "state": "Nuevo Leon",
+                "country": "MX",
+                "postalCode": "64000",
+                "phone": "7563126"
+            }
+        },
+        "creditCard": {
+            "number": "4772910000000008",
+            "securityCode": "321",
+            "expirationDate": "2014/12",
+            "name": "REJECTED"
+        },
+        "extraParameters": {
+            "INSTALLMENTS_NUMBER": 1
+        },
+        "type": "AUTHORIZATION_AND_CAPTURE",
+        "paymentMethod": "VISA",
+        "paymentCountry": "MX",
+        "deviceSessionId": "vghs6tvkcle931686k1900o6e1",
+        "ipAddress": "127.0.0.1",
+        "cookie": "pt1t38347bs6jc9ruv2ecpv7o2",
+        "userAgent": "Mozilla/5.0 (Windows NT 5.1; rv:18.0) Gecko/20100101 Firefox/18.0"
+    },
+    "test": false
+}
