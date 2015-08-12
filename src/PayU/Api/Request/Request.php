@@ -20,7 +20,7 @@ class Request extends AbstractRequest
         $data = [
             'language'=>$language,
             'command'=>$this->command,
-            'merchant'=>$credentials->jsonSerialize(),
+            'merchant'=>$credentials(),
             'test'=>(bool)$test
         ];
 

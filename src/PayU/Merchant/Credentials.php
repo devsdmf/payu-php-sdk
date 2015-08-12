@@ -22,6 +22,11 @@ class Credentials implements \JsonSerializable
         return $closure();
     }
 
+    public function __invoke()
+    {
+        return $this->jsonSerialize();
+    }
+
     public static function factory($key, $login, $environment = PayU::ENV_DEFAULT)
     {
         $credentials = new self(function () use ($key, $login){
