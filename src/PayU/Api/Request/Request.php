@@ -4,7 +4,7 @@ namespace PayU\Api\Request;
 
 use PayU\Merchant\Credentials;
 
-class Request extends RequestAbstract
+class Request extends AbstractRequest
 {
 
     private $command;

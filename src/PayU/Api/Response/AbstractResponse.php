@@ -2,7 +2,7 @@
 
 namespace PayU\Api\Response;
 
-abstract class ResponseAbstract
+abstract class AbstractResponse
 {
 
     private $result = false;

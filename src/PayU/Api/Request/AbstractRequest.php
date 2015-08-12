@@ -5,7 +5,7 @@ namespace PayU\Api\Request;
 use PayU\Api\ContextInterface;
 use PayU\Exception\InvalidContextException;
 
-abstract class RequestAbstract implements ContextInterface
+abstract class AbstractRequest implements ContextInterface
 {
 
     protected $context;
