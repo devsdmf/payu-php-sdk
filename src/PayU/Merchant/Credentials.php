@@ -5,7 +5,7 @@ namespace PayU\Merchant;
 use PayU\Exception\InvalidCredentialsException;
 use PayU\PayU;
 
-class Credentials implements \JsonSerializable
+class Credentials
 {
 
     private $credentials;
@@ -15,16 +15,10 @@ class Credentials implements \JsonSerializable
         $this->credentials = $closure;
     }
 
-    public function jsonSerialize()
-    {
-        $closure = $this->credentials;
-
-        return $closure();
-    }
-
     public function __invoke()
     {
-        return $this->jsonSerialize();
+        $closure = $this->credentials;
+        return $closure();
     }
 
     public static function factory($key, $login, $environment = PayU::ENV_DEFAULT)
