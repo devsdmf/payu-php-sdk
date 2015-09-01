@@ -46,15 +46,29 @@ class PayU
      */
     protected $language;
 
-    protected $credentials;
+    /**
+     * @var Credentials
+     */
+    protected $credentials = null;
 
-    public function __construct(EnvironmentInterface $env, BuilderInterface $builder, $language = self::LANGUAGE_DEFAULT)
+    /**
+     * @var string
+     */
+    protected $notifyUrl = null;
+
+    /**
+     * @var mixed
+     */
+    protected $partnerId = null;
+
+    public function __construct(EnvironmentInterface $env, BuilderInterface $builder, $language = self::LANGUAGE_DEFAULT, $partnerId = null)
     {
         $this->httpClient = new Client();
 
         $this->setEnvironment($env);
         $this->setBuilder($builder);
         $this->setLanguage($language);
+
     }
 
     private function setLanguage($language = self::LANGUAGE_DEFAULT)
@@ -105,6 +119,26 @@ class PayU
     public function getCredentials()
     {
         return $this->credentials;
+    }
+
+    public function setNotifyUrl($url)
+    {
+        $this->notifyUrl = $url;
+    }
+
+    public function getNotifyUrl()
+    {
+        return $this->notifyUrl;
+    }
+
+    public function setPartnerId($id)
+    {
+        $this->partnerId = $id;
+    }
+
+    public function getPartnerId()
+    {
+        return $this->partnerId;
     }
 
     public function request(Request $request)
