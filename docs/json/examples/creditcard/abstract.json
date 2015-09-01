@@ -1,0 +1,83 @@
+{
+    "language": "es",
+    "command": "SUBMIT_TRANSACTION",
+    "merchant": {
+        "apiKey": "6u39nqhq8ftd0hlvnjfs66eh8c",
+        "apiLogin": "11959c415b33d0c"
+    },
+    "transaction": {
+        "order": {
+            "accountId": "509171",
+            "referenceCode": "payment_test_00000001",
+            "description": "payment test",
+            "language": "es",
+            "signature": "6dcd21f14036ad057988089df9a28434",
+            "notifyUrl": "http://www.tes.com/confirmation",
+            "additionalValues": {
+                "TX_VALUE": {
+                    "value": 100,
+                    "currency": "ARS" // CURRENCY CONSTANT
+                }
+            },
+            "buyer": {
+                "merchantBuyerId": "1",
+                "fullName": "First name and second buyer  name",
+                "emailAddress": "buyer_test@test.com",
+                "contactPhone": "7563126",
+                "dniNumber": "5415668464654",
+                "cnpj": "32593371000110", // only in brazil
+                "shippingAddress": {
+                    "street1": "Viamonte",
+                    "street2": "1366",
+                    "city": "Buenos Aires",
+                    "state": "Buenos Aires",
+                    "country": "AR",
+                    "postalCode": "000000",
+                    "phone": "7563126"
+                }
+            },
+            "shippingAddress": {
+                "street1": "Viamonte",
+                "street2": "1366",
+                "city": "Buenos Aires",
+                "state": "Buenos Aires",
+                "country": "AR",
+                "postalCode": "0000000",
+                "phone": "7563126"
+            }
+        },
+        "payer": {
+            "merchantPayerId": "1",
+            "fullName": "First name and second payer name",
+            "emailAddress": "payer_test@test.com",
+            "contactPhone": "7563126",
+            "dniNumber": "5415668464654",
+            "billingAddress": {
+                "street1": "Avenida entre rios",
+                "street2": "452",
+                "city": "Plata",
+                "state": "Buenos Aires",
+                "country": "AR",
+                "postalCode": "64000",
+                "phone": "7563126"
+            }
+        },
+        "creditCard": {
+            "number": "4850110000000000",
+            "securityCode": "321",
+            "expirationDate": "2014/12",
+            "name": "REJECTED"
+        },
+        "extraParameters": {
+            "INSTALLMENTS_NUMBER": 1
+        },
+        "type": "AUTHORIZATION_AND_CAPTURE",
+        "paymentMethod": "VISA",
+        "paymentCountry": "AR", // constant
+        "deviceSessionId": "vghs6tvkcle931686k1900o6e1",
+        "ipAddress": "127.0.0.1",
+        "cookie": "pt1t38347bs6jc9ruv2ecpv7o2",
+        "userAgent": "Mozilla/5.0 (Windows NT 5.1; rv:18.0) Gecko/20100101 Firefox/18.0"
+    },
+    "test": false
+}
