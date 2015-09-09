@@ -10,9 +10,9 @@
             "accountId": "509171",
             "referenceCode": "payment_test_00000001",
             "description": "payment test",
-            "language": "es",
-            "signature": "6dcd21f14036ad057988089df9a28434",
-            "notifyUrl": "http://www.tes.com/confirmation",
+            "language": "es", // set by api
+            "signature": "6dcd21f14036ad057988089df9a28434", // set by api
+            "notifyUrl": "http://www.tes.com/confirmation", // set by api
             "additionalValues": {
                 "TX_VALUE": {
                     "value": 100,
