@@ -65,6 +65,9 @@ class OrderTest extends \PHPUnit_Framework_TestCase
 
         $order->setBuyer($buyer);
 
+        $address = $this->createAddress();
+
+        $order->setShippingAddress($address);
 
         $data = $order->toArray();
         $this->assertArrayHasKey('accountId',$data);
@@ -73,6 +76,7 @@ class OrderTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('additionalValues',$data);
         $this->assertArraySubset($amount->toArray(),$data['additionalValues']);
         $this->assertArraySubset($buyer->toArray(),$data['buyer']);
+        $this->assertArraySubset($address->toArray(),$data['shippingAddress']);
     }
 
     public function createBuyer()
@@ -83,8 +87,14 @@ class OrderTest extends \PHPUnit_Framework_TestCase
             ->setPhone('55313131')
             ->setDni('123123')
             ->setCnpj('123123123')
-            ->setEmail('foo@bar.com');
+            ->setEmail('foo@bar.com')
+            ->setAddress($this->createAddress());
 
+        return $buyer;
+    }
+
+    public function createAddress()
+    {
         $address = new Address();
         $address->setStreet('St. Foo')
                 ->setNumber(123)
@@ -95,8 +105,6 @@ class OrderTest extends \PHPUnit_Framework_TestCase
                 ->setCountry(Country::BRAZIL)
                 ->setPhone('55313131');
 
-        $buyer->setAddress($address);
-
-        return $buyer;
+        return $address;
     }
 }
