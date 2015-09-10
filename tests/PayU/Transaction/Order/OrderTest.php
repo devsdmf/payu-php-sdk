@@ -2,6 +2,10 @@
 
 namespace PayU\Transaction\Order;
 
+use PayU\Transaction\Client\Address;
+use PayU\Transaction\Client\Buyer;
+use PayU\Transaction\Client\Country;
+
 class OrderTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -48,12 +52,19 @@ class OrderTest extends \PHPUnit_Framework_TestCase
     public function testToArray()
     {
         $order = new Order();
-        $amount = new Amount(Amount::VALUE,1.00,Currency::BRAZIL);
 
         $order->setAccountId('foo')
               ->setReferenceCode('001002')
-              ->setDescription('Foo order')
-              ->addAmount($amount);
+              ->setDescription('Foo order');
+
+        $amount = new Amount(Amount::VALUE,1.00,Currency::BRAZIL);
+
+        $order->addAmount($amount);
+
+        $buyer = $this->createBuyer();
+
+        $order->setBuyer($buyer);
+
 
         $data = $order->toArray();
         $this->assertArrayHasKey('accountId',$data);
@@ -61,6 +72,31 @@ class OrderTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('description',$data);
         $this->assertArrayHasKey('additionalValues',$data);
         $this->assertArraySubset($amount->toArray(),$data['additionalValues']);
+        $this->assertArraySubset($buyer->toArray(),$data['buyer']);
+    }
 
+    public function createBuyer()
+    {
+        $buyer = new Buyer();
+        $buyer->setName('Foo')
+            ->setId(123)
+            ->setPhone('55313131')
+            ->setDni('123123')
+            ->setCnpj('123123123')
+            ->setEmail('foo@bar.com');
+
+        $address = new Address();
+        $address->setStreet('St. Foo')
+                ->setNumber(123)
+                ->setComplement('FOO')
+                ->setNeighborhood('Bar Neighborhood')
+                ->setCity('Foo City')
+                ->setState('Bar State')
+                ->setCountry(Country::BRAZIL)
+                ->setPhone('55313131');
+
+        $buyer->setAddress($address);
+
+        return $buyer;
     }
 }

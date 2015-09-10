@@ -3,6 +3,7 @@
 namespace PayU\Transaction\Order;
 
 use PayU\Entity\EntityInterface;
+use PayU\Transaction\Client\Buyer;
 
 class Order implements EntityInterface
 {
@@ -14,6 +15,8 @@ class Order implements EntityInterface
     protected $description = null;
 
     protected $amount;
+
+    protected $buyer = null;
 
     public function __construct()
     {
@@ -80,6 +83,18 @@ class Order implements EntityInterface
         $this->amount->detach($amount);
     }
 
+    public function setBuyer(Buyer $buyer)
+    {
+        $this->buyer = $buyer;
+
+        return $this;
+    }
+
+    public function getBuyer()
+    {
+        return $this->buyer;
+    }
+
     public function toArray()
     {
         $additionalValues = [];
@@ -92,7 +107,8 @@ class Order implements EntityInterface
             'accountId'=>$this->account_id,
             'referenceCode'=>$this->reference_code,
             'description'=>$this->description,
-            'additionalValues'=>$additionalValues
+            'additionalValues'=>$additionalValues,
+            'buyer'=>$this->buyer->toArray()
         ];
     }
 }
