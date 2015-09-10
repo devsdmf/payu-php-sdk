@@ -23,6 +23,8 @@ class Order implements EntityInterface
     public function setAccountId($id)
     {
         $this->account_id = (string)$id;
+
+        return $this;
     }
 
     public function getAccountId()
@@ -33,6 +35,8 @@ class Order implements EntityInterface
     public function setReferenceCode($code)
     {
         $this->reference_code = (string)$code;
+
+        return $this;
     }
 
     public function getReferenceCode()
@@ -43,6 +47,8 @@ class Order implements EntityInterface
     public function setDescription($description)
     {
         $this->description = (string)$description;
+
+        return $this;
     }
 
     public function getDescription()
@@ -53,6 +59,8 @@ class Order implements EntityInterface
     public function setAmountStack(AmountStack $stack)
     {
         $this->amount = $stack;
+
+        return $this;
     }
 
     public function getAmountStack()
@@ -63,6 +71,8 @@ class Order implements EntityInterface
     public function addAmount(Amount $amount)
     {
         $this->amount->attach($amount);
+
+        return $this;
     }
 
     public function removeAmount(Amount $amount)

@@ -50,10 +50,10 @@ class OrderTest extends \PHPUnit_Framework_TestCase
         $order = new Order();
         $amount = new Amount(Amount::VALUE,1.00,Currency::BRAZIL);
 
-        $order->setAccountId('foo');
-        $order->setReferenceCode('001002');
-        $order->setDescription('Foo order');
-        $order->addAmount($amount);
+        $order->setAccountId('foo')
+              ->setReferenceCode('001002')
+              ->setDescription('Foo order')
+              ->addAmount($amount);
 
         $data = $order->toArray();
         $this->assertArrayHasKey('accountId',$data);
