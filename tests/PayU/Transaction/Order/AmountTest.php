@@ -2,6 +2,8 @@
 
 namespace PayU\Transaction\Order;
 
+use PayU\Transaction\Currency;
+
 class AmountTest extends \PHPUnit_Framework_TestCase
 {
 

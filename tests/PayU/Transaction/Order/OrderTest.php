@@ -4,7 +4,8 @@ namespace PayU\Transaction\Order;
 
 use PayU\Transaction\Client\Address;
 use PayU\Transaction\Client\Buyer;
-use PayU\Transaction\Client\Country;
+use PayU\Transaction\Country;
+use PayU\Transaction\Currency;
 
 class OrderTest extends \PHPUnit_Framework_TestCase
 {

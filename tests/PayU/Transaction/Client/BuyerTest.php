@@ -2,6 +2,8 @@
 
 namespace PayU\Transaction\Client;
 
+use PayU\Transaction\Country;
+
 class BuyerTest extends \PHPUnit_Framework_TestCase
 {
 

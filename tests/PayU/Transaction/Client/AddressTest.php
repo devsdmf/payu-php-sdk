@@ -2,6 +2,8 @@
 
 namespace PayU\Transaction\Client;
 
+use PayU\Transaction\Country;
+
 class AddressTest extends \PHPUnit_Framework_TestCase
 {
 

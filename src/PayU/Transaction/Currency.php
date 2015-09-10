@@ -1,6 +1,6 @@
 <?php
 
-namespace PayU\Transaction\Order;
+namespace PayU\Transaction;
 
 class Currency
 {
