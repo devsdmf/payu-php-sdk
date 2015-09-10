@@ -27,6 +27,8 @@ class Amount implements EntityInterface
     private function setContext($context)
     {
         $this->context = (string)$context;
+
+        return $this;
     }
 
     public function getContext()
@@ -37,6 +39,8 @@ class Amount implements EntityInterface
     private function setValue($value)
     {
         $this->value = (float)$value;
+
+        return $this;
     }
 
     public function getValue()
@@ -47,6 +51,8 @@ class Amount implements EntityInterface
     private function setCurrency($currency)
     {
         $this->currency = (string)$currency;
+
+        return $this;
     }
 
     public function getCurrency()
