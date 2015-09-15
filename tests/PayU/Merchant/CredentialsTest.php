@@ -40,4 +40,19 @@ class CredentialsTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('apiKey',$data);
         $this->assertArrayHasKey('apiLogin',$data);
     }
+
+    public function testSerializeUnserializeObject()
+    {
+        $credentials = Credentials::factory($this->credential_key,$this->credential_login,PayU::ENV_SANDBOX);
+
+        $callable1 = $credentials();
+
+        $serialized = serialize($credentials);
+
+        $credentials2 = unserialize($serialized);
+
+        $callable2 = $credentials2();
+
+        $this->assertArraySubset($callable1,$callable2);
+    }
 }
