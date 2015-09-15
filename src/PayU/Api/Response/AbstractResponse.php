@@ -5,9 +5,9 @@ namespace PayU\Api\Response;
 abstract class AbstractResponse
 {
 
-    private $result = false;
+    protected $result = false;
 
-    private $error = null;
+    protected $error = null;
 
     public function __construct($result = false, $error = null, $options = [])
     {

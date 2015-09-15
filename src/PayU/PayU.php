@@ -3,6 +3,7 @@
 namespace PayU;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use PayU\Api\Request\Request;
 use PayU\Api\Response\Builder\BuilderInterface;
 use PayU\Api\Response\Builder\ResponseBuilder;
@@ -45,6 +46,11 @@ class PayU
      * @var string
      */
     protected $language;
+
+    /**
+     * @var string
+     */
+    protected $merchantId = null;
 
     /**
      * @var Credentials
@@ -111,6 +117,16 @@ class PayU
         $this->builder = $builder;
     }
 
+    public function setMerchantId($merchant)
+    {
+        $this->merchantId = (string)$merchant;
+    }
+
+    public function getMerchantId()
+    {
+        return $this->merchantId;
+    }
+
     public function setCredentials(Credentials $credentials)
     {
         $this->credentials = $credentials;
@@ -143,17 +159,21 @@ class PayU
 
     public function request(Request $request)
     {
-        $url = $this->environment->getUrl($request->getContext());
+        try {
+            $url = $this->environment->getUrl($request->getContext());
 
-        $body = $request->compile($this->getCredentials(),$this->getLanguage(),$this->environment->isTest());
+            $body = $request->compile($this);
 
-        $headers = $this->environment->getHeaders();
+            $headers = $this->environment->getHeaders();
 
-        $options = array_merge(['body'=>$body],['headers'=>$headers],$this->environment->getOptions());
+            $options = array_merge(['body'=>$body],['headers'=>$headers],$this->environment->getOptions());
 
-        $response = $this->httpClient->post($url,$options);
+            $response = $this->httpClient->post($url,$options);
 
-        return $this->builder->build($request,$response);
+            return $this->builder->build($request,$response);
+        } catch (RequestException $e) {
+            // catch and threat the errors
+        }
     }
 
     public static function ping(Credentials $credentials, $language = null, $environment = null)

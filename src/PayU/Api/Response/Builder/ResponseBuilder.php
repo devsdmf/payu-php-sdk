@@ -4,6 +4,7 @@ namespace PayU\Api\Response\Builder;
 
 use PayU\Api\ContextInterface;
 use PayU\Api\Request\AbstractRequest;
+use PayU\Api\Response\PaymentResponse;
 use PayU\Api\Response\QueryResponse;
 use PayU\Exception\InvalidContextException;
 use Psr\Http\Message\ResponseInterface;
@@ -62,6 +63,12 @@ class ResponseBuilder implements ContextInterface, BuilderInterface
 
     private function buildPaymentResponse(ResponseInterface $response)
     {
-        return $response;
+        $data = json_decode($response->getBody(),true);
+
+        $result = ($data['code'] == 'SUCCESS') ? true : false;
+
+        $payment_response = new PaymentResponse($result,$data['error'],$data);
+
+        return $payment_response;
     }
 }
