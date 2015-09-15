@@ -1,0 +1,21 @@
+{
+    "code": "SUCCESS",
+    "error": null,
+    "transactionResponse": {
+        "orderId": 7460849,
+        "transactionId": "29fabf9b-051f-4992-af0e-321e08dc12d5",
+        "state": "APPROVED",
+        "paymentNetworkResponseCode": null,
+        "paymentNetworkResponseErrorMessage": null,
+        "trazabilityCode": "00000000",
+        "authorizationCode": "00000000",
+        "pendingReason": null,
+        "responseCode": "APPROVED",
+        "errorCode": null,
+        "responseMessage": null,
+        "transactionDate": null,
+        "transactionTime": null,
+        "operationDate": 1442286917780,
+        "extraParameters": null
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "code": "SUCCESS",
+    "error": null,
+    "transactionResponse": {
+        "orderId": 7461051,
+        "transactionId": "d61a009b-0f42-46fe-b935-a5acc738c7b8",
+        "state": "PENDING",
+        "paymentNetworkResponseCode": null,
+        "paymentNetworkResponseErrorMessage": null,
+        "trazabilityCode": null,
+        "authorizationCode": null,
+        "pendingReason": "PENDING_REVIEW",
+        "responseCode": "PENDING_TRANSACTION_REVIEW",
+        "errorCode": null,
+        "responseMessage": null,
+        "transactionDate": null,
+        "transactionTime": null,
+        "operationDate": null,
+        "extraParameters": null
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "code": "SUCCESS",
+    "error": null,
+    "transactionResponse": {
+        "orderId": 7461050,
+        "transactionId": "e7d634aa-c5b9-4333-858a-5ab386c5cbaf",
+        "state": "DECLINED",
+        "paymentNetworkResponseCode": null,
+        "paymentNetworkResponseErrorMessage": null,
+        "trazabilityCode": null,
+        "authorizationCode": null,
+        "pendingReason": null,
+        "responseCode": "ANTIFRAUD_REJECTED",
+        "errorCode": null,
+        "responseMessage": null,
+        "transactionDate": null,
+        "transactionTime": null,
+        "operationDate": null,
+        "extraParameters": null
+    }
+}
