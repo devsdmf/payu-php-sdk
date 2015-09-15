@@ -2,21 +2,20 @@
 
 namespace PayU\Api\Request;
 
-use PayU\Merchant\Credentials;
 use PayU\PayU;
 use PayU\Transaction\Transaction;
 
-class Request extends AbstractRequest
+class PaymentRequest extends AbstractRequest implements RequestInterface
 {
 
     private $command;
 
     private $transaction = null;
 
-    public function __construct($command, $context)
+    public function __construct($command)
     {
         $this->command = (string)$command;
-        $this->setContext($context);
+        $this->setContext(self::CONTEXT_PAYMENT);
     }
 
     public function setTransaction(Transaction $transaction)

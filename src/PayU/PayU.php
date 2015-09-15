@@ -4,7 +4,10 @@ namespace PayU;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use PayU\Api\Request\Request;
+use PayU\Api\Request\Command;
+use PayU\Api\Request\PaymentRequest;
+use PayU\Api\Request\QueryRequest;
+use PayU\Api\Request\RequestInterface;
 use PayU\Api\Response\Builder\BuilderInterface;
 use PayU\Api\Response\Builder\ResponseBuilder;
 use PayU\Environment\EnvironmentInterface;
@@ -14,6 +17,7 @@ use PayU\Exception\InvalidBuilderException;
 use PayU\Exception\InvalidEnvironmentException;
 use PayU\Exception\InvalidLanguageException;
 use PayU\Merchant\Credentials;
+use PayU\Transaction\Transaction;
 
 class PayU
 {
@@ -157,7 +161,39 @@ class PayU
         return $this->partnerId;
     }
 
-    public function request(Request $request)
+    public function getOrderById($orderId)
+    {
+        $request = new QueryRequest(Command::QUERY_ORDER_DETAIL);
+        $request->setOrderId($orderId);
+
+        return $this->request($request);
+    }
+
+    public function getOrderByReference($referenceCode)
+    {
+        $request = new QueryRequest(Command::QUERY_ORDER_DETAIL_BY_REFERENCE_CODE);
+        $request->setReferenceCode($referenceCode);
+
+        return $this->request($request);
+    }
+
+    public function getTransactionById($transactionId)
+    {
+        $request = new QueryRequest(Command::QUERY_TRANSACTION_RESPONSE_DETAIL);
+        $request->setTransactionId($transactionId);
+
+        return $this->request($request);
+    }
+
+    public function doPayment(Transaction $transaction)
+    {
+        $request = new PaymentRequest(Command::PAYMENT_SUBMIT_TRANSACTION);
+        $request->setTransaction($transaction);
+
+        return $this->request($request);
+    }
+
+    public function request(RequestInterface $request)
     {
         try {
             $url = $this->environment->getUrl($request->getContext());
@@ -181,7 +217,7 @@ class PayU
         $instance = self::factory($language,$environment);
         $instance->setCredentials($credentials);
 
-        $request = new Request('PING',Request::CONTEXT_QUERY);
+        $request = new QueryRequest(Command::PING);
 
         return $instance->request($request);
     }

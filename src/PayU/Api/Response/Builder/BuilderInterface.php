@@ -2,10 +2,10 @@
 
 namespace PayU\Api\Response\Builder;
 
-use PayU\Api\Request\AbstractRequest;
+use PayU\Api\Request\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 interface BuilderInterface
 {
-    public function build(AbstractRequest $request, ResponseInterface $response, $context = null);
+    public function build(RequestInterface $request, ResponseInterface $response, $context = null);
 }

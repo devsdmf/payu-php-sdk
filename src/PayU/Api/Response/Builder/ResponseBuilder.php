@@ -3,7 +3,7 @@
 namespace PayU\Api\Response\Builder;
 
 use PayU\Api\ContextInterface;
-use PayU\Api\Request\AbstractRequest;
+use PayU\Api\Request\RequestInterface;
 use PayU\Api\Response\PaymentResponse;
 use PayU\Api\Response\QueryResponse;
 use PayU\Exception\InvalidContextException;
@@ -30,7 +30,7 @@ class ResponseBuilder implements ContextInterface, BuilderInterface
 
     public function getContext(){}
 
-    public function build(AbstractRequest $request, ResponseInterface $response, $context = null)
+    public function build(RequestInterface $request, ResponseInterface $response, $context = null)
     {
         if (!is_null($context)) {
             $this->setContext($context);
