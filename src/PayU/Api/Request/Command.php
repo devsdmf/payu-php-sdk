@@ -18,7 +18,7 @@ class Command
      */
     const QUERY_PING                           = 'PING';
     const QUERY_ORDER_DETAIL                   = 'ORDER_DETAIL';
-    const QUERY_ORDER_DETAIL_BY_REFERENCE_CODE = ' ORDER_DETAIL_BY_REFERENCE_CODE';
+    const QUERY_ORDER_DETAIL_BY_REFERENCE_CODE = 'ORDER_DETAIL_BY_REFERENCE_CODE';
     const QUERY_TRANSACTION_RESPONSE_DETAIL    = 'TRANSACTION_RESPONSE_DETAIL';
 
     private function __construct(){}
