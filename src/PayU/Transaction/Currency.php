@@ -2,6 +2,14 @@
 
 namespace PayU\Transaction;
 
+/**
+ * Class Currency
+ *
+ * Currencies object wrapper
+ *
+ * @package PayU\Transaction
+ * @author Lucas Mendes <devsdmf@gmail.com>
+ */
 class Currency
 {
 
@@ -15,5 +23,8 @@ class Currency
     const PANAMA    = 'COP';
     const PERU      = 'PEN';
 
+    /**
+     * The Constructor
+     */
     private function __construct(){}
 }

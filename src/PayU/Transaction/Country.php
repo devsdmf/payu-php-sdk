@@ -2,6 +2,14 @@
 
 namespace PayU\Transaction;
 
+/**
+ * Class Country
+ *
+ * Countries object wrapper
+ *
+ * @package PayU\Transaction
+ * @author Lucas Mendes <devsdmf@gmail.com>
+ */
 class Country
 {
 
@@ -15,5 +23,8 @@ class Country
     const PANAMA    = 'PA';
     const PERU      = 'PE';
 
+    /**
+     * The Constructor
+     */
     private function __construct(){}
 }

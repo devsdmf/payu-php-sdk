@@ -2,6 +2,12 @@
 
 namespace PayU\Exception;
 
+/**
+ * Class InvalidCredentialsException
+ *
+ * @package PayU\Exception
+ * @author Lucas Mendes <devsdmf@gmail.com>
+ */
 class InvalidCredentialsException extends \RuntimeException
 {
 

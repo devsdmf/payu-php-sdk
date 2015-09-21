@@ -2,6 +2,14 @@
 
 namespace PayU\Transaction;
 
+/**
+ * Class PaymentMethod
+ *
+ * Payment Method object wrapper
+ *
+ * @package PayU\Transaction
+ * @author Lucas Mendes <devsdmf@gmail.com>
+ */
 class PaymentMethod
 {
 
@@ -68,5 +76,8 @@ class PaymentMethod
     const MASTERCARD = 'MASTERCARD';
     const VISA = 'VISA';
 
+    /**
+     * The Constructor
+     */
     private function __construct(){}
 }

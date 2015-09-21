@@ -4,7 +4,6 @@ namespace PayU;
 
 use PayU\Api\Request\Command;
 use PayU\Api\Request\PaymentRequest;
-use PayU\Api\Request\Request;
 use PayU\Merchant\Credentials;
 use PayU\Transaction\Card\CreditCard;
 use PayU\Transaction\Client\Address;

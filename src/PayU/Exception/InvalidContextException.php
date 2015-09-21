@@ -2,6 +2,12 @@
 
 namespace PayU\Exception;
 
+/**
+ * Class InvalidContextException
+ *
+ * @package PayU\Exception
+ * @author Lucas Mendes <devsdmf@gmail.com>
+ */
 class InvalidContextException extends \InvalidArgumentException
 {
 

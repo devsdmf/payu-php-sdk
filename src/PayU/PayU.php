@@ -19,6 +19,14 @@ use PayU\Exception\InvalidLanguageException;
 use PayU\Merchant\Credentials;
 use PayU\Transaction\Transaction;
 
+/**
+ * Class PayU
+ *
+ * The PayU client wrapper
+ *
+ * @package PayU
+ * @author Lucas Mendes <devsdmf@gmail.com>
+ */
 class PayU
 {
 
@@ -67,10 +75,18 @@ class PayU
     protected $notifyUrl = null;
 
     /**
-     * @var mixed
+     * @var string
      */
     protected $partnerId = null;
 
+    /**
+     * The Constructor
+     *
+     * @param EnvironmentInterface $env
+     * @param BuilderInterface     $builder
+     * @param string               $language
+     * @param string               $partnerId
+     */
     public function __construct(EnvironmentInterface $env, BuilderInterface $builder, $language = self::LANGUAGE_DEFAULT, $partnerId = null)
     {
         $this->httpClient = new Client();
@@ -78,9 +94,13 @@ class PayU
         $this->setEnvironment($env);
         $this->setBuilder($builder);
         $this->setLanguage($language);
-
     }
 
+    /**
+     * Set the API language
+     *
+     * @param string $language
+     */
     private function setLanguage($language = self::LANGUAGE_DEFAULT)
     {
         switch ($language) {
@@ -101,66 +121,131 @@ class PayU
         }
     }
 
+    /**
+     * Get the current language
+     *
+     * @return string
+     */
     public function getLanguage()
     {
         return $this->language;
     }
 
+    /**
+     * Set the environment instance
+     *
+     * @param EnvironmentInterface $env
+     */
     private function setEnvironment(EnvironmentInterface $env)
     {
         $this->environment = $env;
     }
 
+    /**
+     * Get the current environment
+     *
+     * @return EnvironmentInterface
+     */
     public function getEnvironment()
     {
         return $this->environment;
     }
 
+    /**
+     * Set the response builder
+     *
+     * @param BuilderInterface $builder
+     */
     private function setBuilder(BuilderInterface $builder)
     {
         $this->builder = $builder;
     }
 
+    /**
+     * Set the merchant identification
+     *
+     * @param $merchant
+     */
     public function setMerchantId($merchant)
     {
         $this->merchantId = (string)$merchant;
     }
 
+    /**
+     * Get the merchant id
+     *
+     * @return string
+     */
     public function getMerchantId()
     {
         return $this->merchantId;
     }
 
+    /**
+     * Set the credentials objects
+     *
+     * @param Credentials $credentials
+     */
     public function setCredentials(Credentials $credentials)
     {
         $this->credentials = $credentials;
     }
 
+    /**
+     * Get the credentials
+     *
+     * @return Credentials
+     */
     public function getCredentials()
     {
         return $this->credentials;
     }
 
+    /**
+     * Set notify URL
+     *
+     * @param $url
+     */
     public function setNotifyUrl($url)
     {
         $this->notifyUrl = $url;
     }
 
+    /**
+     * Get the notify URL
+     *
+     * @return string
+     */
     public function getNotifyUrl()
     {
         return $this->notifyUrl;
     }
 
+    /**
+     * Set the partner id
+     *
+     * @param $id
+     */
     public function setPartnerId($id)
     {
         $this->partnerId = $id;
     }
 
+    /**
+     * Get the partner id
+     *
+     * @return string
+     */
     public function getPartnerId()
     {
         return $this->partnerId;
     }
 
+    /**
+     * Search order by id
+     * @param $orderId
+     * @return mixed
+     */
     public function getOrderById($orderId)
     {
         $request = new QueryRequest(Command::QUERY_ORDER_DETAIL);
@@ -193,6 +278,10 @@ class PayU
         return $this->request($request);
     }
 
+    /**
+     * @param RequestInterface $request
+     * @return mixed
+     */
     public function request(RequestInterface $request)
     {
         try {

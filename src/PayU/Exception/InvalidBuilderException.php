@@ -2,6 +2,12 @@
 
 namespace PayU\Exception;
 
+/**
+ * Class InvalidBuilderException
+ *
+ * @package PayU\Exception
+ * @author Lucas Mendes <devsdmf@gmail.com>
+ */
 class InvalidBuilderException extends \RuntimeException
 {
 

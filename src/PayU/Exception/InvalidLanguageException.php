@@ -2,6 +2,12 @@
 
 namespace PayU\Exception;
 
+/**
+ * Class InvalidLanguageException
+ *
+ * @package PayU\Exception
+ * @author Lucas Mendes <devsdmf@gmail.com>
+ */
 class InvalidLanguageException extends \InvalidArgumentException
 {
 

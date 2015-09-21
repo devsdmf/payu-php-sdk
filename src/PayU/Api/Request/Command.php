@@ -2,6 +2,14 @@
 
 namespace PayU\Api\Request;
 
+/**
+ * Class Command
+ *
+ * Define and implement available commands in API
+ *
+ * @package PayU\Api\Request
+ * @author Lucas Mendes <devsdmf@gmail.com>
+ */
 class Command
 {
 
