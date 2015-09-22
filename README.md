@@ -65,4 +65,4 @@ $ ./vendor/bin/phpunit
 
 ## License
 
-This library is licensed under the [LICENSE](MIT License).
+This library is licensed under the [MIT License](LICENSE).
