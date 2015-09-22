@@ -19,9 +19,11 @@ class AmountStack extends \SplObjectStorage
      * @param Amount $amount
      * @param string $data
      */
-    public function attach(Amount $amount, $data = null)
+    public function attach($amount, $data = null)
     {
-        parent::attach($amount,$data);
+        if ($this->validateAmountObject($amount)) {
+            parent::attach($amount,$data);
+        }
     }
 
     /**
@@ -29,9 +31,11 @@ class AmountStack extends \SplObjectStorage
      *
      * @param Amount $amount
      */
-    public function detach(Amount $amount)
+    public function detach($amount)
     {
-        parent::detach($amount);
+        if ($this->validateAmountObject($amount)) {
+            parent::detach($amount);
+        }
     }
 
     /**
@@ -39,9 +43,11 @@ class AmountStack extends \SplObjectStorage
      *
      * @param AmountStack $stack
      */
-    public function addAll(AmountStack $stack)
+    public function addAll($stack)
     {
-        parent::addAll($stack);
+        if ($this->validateAmountStackObject($stack)) {
+            parent::addAll($stack);
+        }
     }
 
     /**
@@ -49,9 +55,11 @@ class AmountStack extends \SplObjectStorage
      *
      * @param AmountStack $stack
      */
-    public function removeAll(AmountStack $stack)
+    public function removeAll($stack)
     {
-        parent::removeAll($stack);
+        if ($this->validateAmountStackObject($stack)) {
+            parent::removeAll($stack);
+        }
     }
 
     /**
@@ -59,8 +67,40 @@ class AmountStack extends \SplObjectStorage
      *
      * @param AmountStack $stack
      */
-    public function removeAllExcept(AmountStack $stack)
+    public function removeAllExcept($stack)
     {
-        parent::removeAll($stack);
+        if ($this->validateAmountStackObject($stack)) {
+            parent::removeAll($stack);
+        }
+    }
+
+    /**
+     * Validate the given Amount object
+     *
+     * @param Amount $amount
+     * @return bool
+     */
+    private function validateAmountObject($amount)
+    {
+        if ($amount instanceof Amount) {
+            return true;
+        } else {
+            throw new \InvalidArgumentException('Expected \PayU\Transaction\Order\Amount, given ' . gettype($amount));
+        }
+    }
+
+    /**
+     * Validate the give AmountStack object
+     *
+     * @param AmountStack $stack
+     * @return bool
+     */
+    private function validateAmountStackObject($stack)
+    {
+        if ($stack instanceof AmountStack) {
+            return true;
+        } else {
+            throw new \InvalidArgumentException('Expected \PayU\Transaction\Order\AmountStack, given ' . gettype($stack));
+        }
     }
 }
