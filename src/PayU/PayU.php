@@ -8,8 +8,11 @@ use PayU\Api\CommandInterface;
 use PayU\Api\Request\PaymentRequest;
 use PayU\Api\Request\QueryRequest;
 use PayU\Api\Request\RequestInterface;
+use PayU\Api\Response\AbstractResponse;
 use PayU\Api\Response\Builder\BuilderInterface;
 use PayU\Api\Response\Builder\ResponseBuilder;
+use PayU\Api\Response\PaymentResponse;
+use PayU\Api\Response\QueryResponse;
 use PayU\Environment\EnvironmentInterface;
 use PayU\Environment\Production;
 use PayU\Environment\Sandbox;
@@ -165,10 +168,13 @@ class PayU
      * Set the merchant identification
      *
      * @param $merchant
+     * @return PayU
      */
     public function setMerchantId($merchant)
     {
         $this->merchantId = (string)$merchant;
+
+        return $this;
     }
 
     /**
@@ -185,10 +191,13 @@ class PayU
      * Set the credentials objects
      *
      * @param Credentials $credentials
+     * @return PayU
      */
     public function setCredentials(Credentials $credentials)
     {
         $this->credentials = $credentials;
+
+        return $this;
     }
 
     /**
@@ -204,11 +213,14 @@ class PayU
     /**
      * Set notify URL
      *
-     * @param $url
+     * @param string $url
+     * @return PayU
      */
     public function setNotifyUrl($url)
     {
         $this->notifyUrl = $url;
+
+        return $this;
     }
 
     /**
@@ -224,11 +236,14 @@ class PayU
     /**
      * Set the partner id
      *
-     * @param $id
+     * @param string $id
+     * @return PayU
      */
     public function setPartnerId($id)
     {
         $this->partnerId = $id;
+
+        return $this;
     }
 
     /**
@@ -243,8 +258,9 @@ class PayU
 
     /**
      * Search order by id
-     * @param $orderId
-     * @return mixed
+     *
+     * @param string $orderId
+     * @return QueryResponse
      */
     public function getOrderById($orderId)
     {
@@ -254,6 +270,12 @@ class PayU
         return $this->request($request);
     }
 
+    /**
+     * Search order by reference code
+     *
+     * @param string $referenceCode
+     * @return QueryResponse
+     */
     public function getOrderByReference($referenceCode)
     {
         $request = new QueryRequest(CommandInterface::QUERY_ORDER_DETAIL_BY_REFERENCE_CODE);
@@ -262,6 +284,12 @@ class PayU
         return $this->request($request);
     }
 
+    /**
+     * Search order by transaction id
+     *
+     * @param string $transactionId
+     * @return QueryResponse
+     */
     public function getTransactionById($transactionId)
     {
         $request = new QueryRequest(CommandInterface::QUERY_TRANSACTION_RESPONSE_DETAIL);
@@ -270,6 +298,12 @@ class PayU
         return $this->request($request);
     }
 
+    /**
+     * Create a payment transaction in API
+     *
+     * @param Transaction $transaction
+     * @return PaymentResponse
+     */
     public function doPayment(Transaction $transaction)
     {
         $request = new PaymentRequest(CommandInterface::PAYMENT_SUBMIT_TRANSACTION);
@@ -279,8 +313,10 @@ class PayU
     }
 
     /**
+     * Perform a request in API
+     *
      * @param RequestInterface $request
-     * @return mixed
+     * @return AbstractResponse
      */
     public function request(RequestInterface $request)
     {
@@ -301,6 +337,14 @@ class PayU
         }
     }
 
+    /**
+     * Check the API and credentials statuses
+     *
+     * @param Credentials $credentials
+     * @param string      $language
+     * @param string      $environment
+     * @return AbstractResponse
+     */
     public static function ping(Credentials $credentials, $language = null, $environment = null)
     {
         $instance = self::factory($language,$environment);
@@ -311,7 +355,15 @@ class PayU
         return $instance->request($request);
     }
 
-    public static function factory($language = self::LANGUAGE_DEFAULT, $environment = self::ENV_DEFAULT, $builder = null)
+    /**
+     * Get a new instance of the PayU client
+     *
+     * @param string           $language
+     * @param string           $environment
+     * @param BuilderInterface $builder
+     * @return PayU
+     */
+    public static function factory($language = self::LANGUAGE_DEFAULT, $environment = self::ENV_DEFAULT, BuilderInterface $builder = null)
     {
         if (is_null($environment)) {
             $environment = self::ENV_DEFAULT;
