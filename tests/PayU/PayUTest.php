@@ -2,7 +2,7 @@
 
 namespace PayU;
 
-use PayU\Api\Request\Command;
+use PayU\Api\CommandInterface;
 use PayU\Api\Request\PaymentRequest;
 use PayU\Merchant\Credentials;
 use PayU\Transaction\Card\CreditCard;
@@ -37,7 +37,7 @@ class PayUTest extends \PHPUnit_Framework_TestCase
 
         $transaction = $this->createTransaction('APPROVED');
 
-        $request = new PaymentRequest(Command::PAYMENT_SUBMIT_TRANSACTION);
+        $request = new PaymentRequest(CommandInterface::PAYMENT_SUBMIT_TRANSACTION);
         $request->setTransaction($transaction);
 
         $response = $payu->request($request);
@@ -56,7 +56,7 @@ class PayUTest extends \PHPUnit_Framework_TestCase
 
         $transaction = $this->createTransaction('PENDING');
 
-        $request = new PaymentRequest(Command::PAYMENT_SUBMIT_TRANSACTION);
+        $request = new PaymentRequest(CommandInterface::PAYMENT_SUBMIT_TRANSACTION);
         $request->setTransaction($transaction);
 
         $response = $payu->request($request);
@@ -75,7 +75,7 @@ class PayUTest extends \PHPUnit_Framework_TestCase
 
         $transaction = $this->createTransaction('DECLINED');
 
-        $request = new PaymentRequest(Command::PAYMENT_SUBMIT_TRANSACTION);
+        $request = new PaymentRequest(CommandInterface::PAYMENT_SUBMIT_TRANSACTION);
         $request->setTransaction($transaction);
 
         $response = $payu->request($request);
