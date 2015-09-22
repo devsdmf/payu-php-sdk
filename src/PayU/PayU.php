@@ -4,7 +4,7 @@ namespace PayU;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use PayU\Api\Request\Command;
+use PayU\Api\CommandInterface;
 use PayU\Api\Request\PaymentRequest;
 use PayU\Api\Request\QueryRequest;
 use PayU\Api\Request\RequestInterface;
@@ -248,7 +248,7 @@ class PayU
      */
     public function getOrderById($orderId)
     {
-        $request = new QueryRequest(Command::QUERY_ORDER_DETAIL);
+        $request = new QueryRequest(CommandInterface::QUERY_ORDER_DETAIL);
         $request->setOrderId($orderId);
 
         return $this->request($request);
@@ -256,7 +256,7 @@ class PayU
 
     public function getOrderByReference($referenceCode)
     {
-        $request = new QueryRequest(Command::QUERY_ORDER_DETAIL_BY_REFERENCE_CODE);
+        $request = new QueryRequest(CommandInterface::QUERY_ORDER_DETAIL_BY_REFERENCE_CODE);
         $request->setReferenceCode($referenceCode);
 
         return $this->request($request);
@@ -264,7 +264,7 @@ class PayU
 
     public function getTransactionById($transactionId)
     {
-        $request = new QueryRequest(Command::QUERY_TRANSACTION_RESPONSE_DETAIL);
+        $request = new QueryRequest(CommandInterface::QUERY_TRANSACTION_RESPONSE_DETAIL);
         $request->setTransactionId($transactionId);
 
         return $this->request($request);
@@ -272,7 +272,7 @@ class PayU
 
     public function doPayment(Transaction $transaction)
     {
-        $request = new PaymentRequest(Command::PAYMENT_SUBMIT_TRANSACTION);
+        $request = new PaymentRequest(CommandInterface::PAYMENT_SUBMIT_TRANSACTION);
         $request->setTransaction($transaction);
 
         return $this->request($request);
@@ -306,7 +306,7 @@ class PayU
         $instance = self::factory($language,$environment);
         $instance->setCredentials($credentials);
 
-        $request = new QueryRequest(Command::PING);
+        $request = new QueryRequest(CommandInterface::PING);
 
         return $instance->request($request);
     }

@@ -1,16 +1,16 @@
 <?php
 
-namespace PayU\Api\Request;
+namespace PayU\Api;
 
 /**
- * Class Command
+ * Interface CommandInterface
  *
- * Define and implement available commands in API
+ * Define the available commands in API
  *
- * @package PayU\Api\Request
+ * @package PayU\Api
  * @author Lucas Mendes <devsdmf@gmail.com>
  */
-class Command
+interface CommandInterface
 {
 
     /**
@@ -31,6 +31,4 @@ class Command
     const QUERY_ORDER_DETAIL                   = 'ORDER_DETAIL';
     const QUERY_ORDER_DETAIL_BY_REFERENCE_CODE = 'ORDER_DETAIL_BY_REFERENCE_CODE';
     const QUERY_TRANSACTION_RESPONSE_DETAIL    = 'TRANSACTION_RESPONSE_DETAIL';
-
-    private function __construct(){}
 }
