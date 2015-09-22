@@ -4,7 +4,7 @@ This is a SDK for PHP projects that provides a friendly and easy interface to in
 
 This library provides a wrapper for the available API objects and a client to perform the requests.
 
-# Installation
+## Installation
 
 ```
 {
@@ -14,7 +14,7 @@ This library provides a wrapper for the available API objects and a client to pe
 }
 ```
 
-# Usage
+## Usage
 
 The basic usage of the library is:
 
@@ -52,17 +52,17 @@ $response = $payU->getOrderById('orderId');
 $data = $response->getPayload();
 ```
 
-# API and Developers Documentation
+## API and Developers Documentation
 
 Soon
 
-# Tests
+## Tests
 
 ```
 $ composer install --dev
 $ ./vendor/bin/phpunit
 ```
 
-# License
+## License
 
 This library is licensed under the [LICENSE](MIT License).
