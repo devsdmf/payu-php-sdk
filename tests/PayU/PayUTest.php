@@ -2,8 +2,7 @@
 
 namespace PayU;
 
-use PayU\Api\CommandInterface;
-use PayU\Api\Request\PaymentRequest;
+use PayU\Api\Response\PaymentResponse;
 use PayU\Merchant\Credentials;
 use PayU\Transaction\Card\CreditCard;
 use PayU\Transaction\Client\Address;
@@ -19,7 +18,7 @@ use PayU\Transaction\Transaction;
 class PayUTest extends \PHPUnit_Framework_TestCase
 {
 
-    const MERCHANT_ID = '500365';
+    const MERCHANT_ID = '123456';
 
     protected $credentials = null;
 
@@ -30,17 +29,20 @@ class PayUTest extends \PHPUnit_Framework_TestCase
 
     public function testApprovedPayment()
     {
-        $payu = PayU::factory(PayU::LANGUAGE_DEFAULT,PayU::ENV_SANDBOX);
+        $approvedResponse = $this->createMock(PaymentResponse::class);
+        $approvedResponse->method('isApproved')
+                         ->willReturn(true);
+        $approvedResponse->method('getError')
+                         ->willReturn(null);
 
-        $payu->setCredentials($this->credentials);
-        $payu->setMerchantId(self::MERCHANT_ID);
+
+        $payu = $this->createMock(PayU::class);
+        $payu->method('doPayment')
+             ->willReturn($approvedResponse);
 
         $transaction = $this->createTransaction('APPROVED');
 
-        $request = new PaymentRequest(CommandInterface::PAYMENT_SUBMIT_TRANSACTION);
-        $request->setTransaction($transaction);
-
-        $response = $payu->request($request);
+        $response = $payu->doPayment($transaction);
 
         $this->assertInstanceOf('\PayU\Api\Response\PaymentResponse',$response);
         $this->assertTrue($response->isApproved());
@@ -49,17 +51,19 @@ class PayUTest extends \PHPUnit_Framework_TestCase
 
     public function testPendingPayment()
     {
-        $payu = PayU::factory(PayU::LANGUAGE_DEFAULT,PayU::ENV_SANDBOX);
+        $pendingResponse = $this->createMock(PaymentResponse::class);
+        $pendingResponse->method('isPending')
+                        ->willReturn(true);
+        $pendingResponse->method('getError')
+                        ->willReturn(null);
 
-        $payu->setCredentials($this->credentials);
-        $payu->setMerchantId(self::MERCHANT_ID);
+        $payu = $this->createMock(PayU::class);
+        $payu->method('doPayment')
+             ->willReturn($pendingResponse);
 
         $transaction = $this->createTransaction('PENDING');
 
-        $request = new PaymentRequest(CommandInterface::PAYMENT_SUBMIT_TRANSACTION);
-        $request->setTransaction($transaction);
-
-        $response = $payu->request($request);
+        $response = $payu->doPayment($transaction);
 
         $this->assertInstanceOf('\PayU\Api\Response\PaymentResponse',$response);
         $this->assertTrue($response->isPending());
@@ -68,17 +72,19 @@ class PayUTest extends \PHPUnit_Framework_TestCase
 
     public function testDeclinedPayment()
     {
-        $payu = PayU::factory(PayU::LANGUAGE_DEFAULT,PayU::ENV_SANDBOX);
+        $declinedResponse = $this->createMock(PaymentResponse::class);
+        $declinedResponse->method('isDeclined')
+                         ->willReturn(true);
+        $declinedResponse->method('getError')
+                         ->willReturn(null);
 
-        $payu->setCredentials($this->credentials);
-        $payu->setMerchantId(self::MERCHANT_ID);
+        $payu = $this->createMock(PayU::class);
+        $payu->method('doPayment')
+             ->willReturn($declinedResponse);
 
         $transaction = $this->createTransaction('DECLINED');
 
-        $request = new PaymentRequest(CommandInterface::PAYMENT_SUBMIT_TRANSACTION);
-        $request->setTransaction($transaction);
-
-        $response = $payu->request($request);
+        $response = $payu->doPayment($transaction);
 
         $this->assertInstanceOf('\PayU\Api\Response\PaymentResponse',$response);
         $this->assertTrue($response->isDeclined());
