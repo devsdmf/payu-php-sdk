@@ -7,11 +7,7 @@ This library provides a wrapper for the available API objects and a client to pe
 ## Installation
 
 ```
-{
-    "require": {
-        "devsdmf/payu-php-sdk": "~1.0"
-    }
-}
+$ composer require devsdmf/payu-php-sdk
 ```
 
 ## Usage
