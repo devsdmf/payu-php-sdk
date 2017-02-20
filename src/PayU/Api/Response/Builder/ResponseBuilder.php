@@ -3,16 +3,33 @@
 namespace PayU\Api\Response\Builder;
 
 use PayU\Api\ContextInterface;
-use PayU\Api\Request\AbstractRequest;
+use PayU\Api\Request\RequestInterface;
+use PayU\Api\Response\PaymentResponse;
 use PayU\Api\Response\QueryResponse;
 use PayU\Exception\InvalidContextException;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Class ResponseBuilder
+ *
+ * Build a response object based on request context
+ *
+ * @package PayU\Api\Response\Builder
+ * @author Lucas Mendes <devsdmf@gmail.com>
+ */
 class ResponseBuilder implements ContextInterface, BuilderInterface
 {
 
+    /**
+     * The context
+     *
+     * @var string
+     */
     protected $context;
 
+    /**
+     * @inheritdoc
+     */
     public function setContext($context)
     {
         switch ($context) {
@@ -27,9 +44,21 @@ class ResponseBuilder implements ContextInterface, BuilderInterface
         }
     }
 
-    public function getContext(){}
+    /**
+     * @inheritdoc
+     */
+    public function getContext()
+    {
+        return $this->context;
+    }
 
-    public function build(AbstractRequest $request, ResponseInterface $response, $context = null)
+    /**
+     * @param RequestInterface  $request
+     * @param ResponseInterface $response
+     * @param null              $context
+     * @return null|PaymentResponse|QueryResponse
+     */
+    public function build(RequestInterface $request, ResponseInterface $response, $context = null)
     {
         if (!is_null($context)) {
             $this->setContext($context);
@@ -49,6 +78,12 @@ class ResponseBuilder implements ContextInterface, BuilderInterface
         }
     }
 
+    /**
+     * Build a query request response object
+     *
+     * @param ResponseInterface $response
+     * @return QueryResponse
+     */
     private function buildQueryResponse(ResponseInterface $response)
     {
         $data = json_decode($response->getBody(),true);
@@ -60,8 +95,20 @@ class ResponseBuilder implements ContextInterface, BuilderInterface
         return $query_response;
     }
 
+    /**
+     * Build a payment request response object
+     *
+     * @param ResponseInterface $response
+     * @return PaymentResponse
+     */
     private function buildPaymentResponse(ResponseInterface $response)
     {
-        return $response;
+        $data = json_decode($response->getBody(),true);
+
+        $result = ($data['code'] == 'SUCCESS') ? true : false;
+
+        $payment_response = new PaymentResponse($result,$data['error'],$data);
+
+        return $payment_response;
     }
 }

@@ -2,6 +2,12 @@
 
 namespace PayU\Exception;
 
+/**
+ * Class InvalidEnvironmentException
+ *
+ * @package PayU\Exception
+ * @author Lucas Mendes <devsdmf@gmail.com>
+ */
 class InvalidEnvironmentException extends \RuntimeException
 {
 

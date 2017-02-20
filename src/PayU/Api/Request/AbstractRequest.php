@@ -5,11 +5,27 @@ namespace PayU\Api\Request;
 use PayU\Api\ContextInterface;
 use PayU\Exception\InvalidContextException;
 
+/**
+ * Class AbstractRequest
+ *
+ * Abstract of a Request object
+ *
+ * @package PayU\Api\Request
+ * @author Lucas Mendes <devsdmf@gmail.com>
+ */
 abstract class AbstractRequest implements ContextInterface
 {
 
+    /**
+     * The Context
+     *
+     * @var string
+     */
     protected $context;
 
+    /**
+     * @inheritdoc
+     */
     public function setContext($context)
     {
         switch ($context) {
@@ -24,6 +40,9 @@ abstract class AbstractRequest implements ContextInterface
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getContext()
     {
         return $this->context;
