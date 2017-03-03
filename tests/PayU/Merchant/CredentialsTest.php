@@ -55,4 +55,10 @@ class CredentialsTest extends \PHPUnit_Framework_TestCase
 
         $this->assertArraySubset($callable1,$callable2);
     }
+
+    public function testFactoryWithoutCheck()
+    {
+        $credentials = Credentials::factory('foo','bar',PayU::ENV_DEFAULT,false);
+        $this->assertInstanceOf('\PayU\Merchant\Credentials',$credentials);
+    }
 }

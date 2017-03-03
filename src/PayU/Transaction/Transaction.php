@@ -372,7 +372,7 @@ class Transaction implements EntityInterface
         return [
             'order'=>$this->order->toArray(),
             'payer'=>$this->payer->toArray(),
-            'creditCard'=>$this->card->toArray(),
+            'creditCard'=>(!is_null($this->card)) ? $this->card->toArray() : null,
             'extraParameters'=>['INSTALLMENTS_NUMBER'=>$this->installments],
             'type'=>$this->type,
             'paymentMethod'=>$this->method,

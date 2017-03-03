@@ -8,7 +8,7 @@ namespace PayU\Exception;
  * @package PayU\Exception
  * @author Lucas Mendes <devsdmf@gmail.com>
  */
-class InvalidContextException extends \InvalidArgumentException
+class InvalidContextException extends PayUException
 {
 
     protected $message = 'The specified context is not valid, please use the ContextInterface constants';

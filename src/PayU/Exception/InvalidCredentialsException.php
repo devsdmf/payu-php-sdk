@@ -8,7 +8,7 @@ namespace PayU\Exception;
  * @package PayU\Exception
  * @author Lucas Mendes <devsdmf@gmail.com>
  */
-class InvalidCredentialsException extends \RuntimeException
+class InvalidCredentialsException extends PayUException
 {
 
     protected $message = 'The specified credentials are not valid, so the credentials object was not created';

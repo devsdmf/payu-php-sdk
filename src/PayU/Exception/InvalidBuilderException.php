@@ -8,7 +8,7 @@ namespace PayU\Exception;
  * @package PayU\Exception
  * @author Lucas Mendes <devsdmf@gmail.com>
  */
-class InvalidBuilderException extends \RuntimeException
+class InvalidBuilderException extends PayUException
 {
 
     protected $message = 'The specified builder is not valid, the builder must be an implementation of BuilderInterface';
