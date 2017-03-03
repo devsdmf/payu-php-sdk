@@ -89,9 +89,13 @@ class Credentials implements \Serializable
             return ['apiKey'=>$key,'apiLogin'=>$login];
         });
 
-        $result = PayU::ping($credentials,null,$environment);
+        if ($check) {
+            $result = PayU::ping($credentials,null,$environment)->isSuccess();
+        } else {
+            $result = true;
+        }
 
-        if ($result->isSuccess()) {
+        if ($result) {
             return $credentials;
         } else {
             throw new InvalidCredentialsException();
