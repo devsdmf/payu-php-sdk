@@ -19,6 +19,7 @@ use PayU\Environment\Sandbox;
 use PayU\Exception\InvalidBuilderException;
 use PayU\Exception\InvalidEnvironmentException;
 use PayU\Exception\InvalidLanguageException;
+use PayU\Exception\PayUException;
 use PayU\Merchant\Credentials;
 use PayU\Transaction\Transaction;
 
@@ -317,6 +318,8 @@ class PayU
      *
      * @param RequestInterface $request
      * @return AbstractResponse
+     *
+     * @throws PayUException
      */
     public function request(RequestInterface $request)
     {
@@ -333,7 +336,7 @@ class PayU
 
             return $this->builder->build($request,$response);
         } catch (RequestException $e) {
-            // catch and threat the errors
+            throw new PayUException('A request error occurred',0,$e);
         }
     }
 

@@ -8,7 +8,7 @@ namespace PayU\Exception;
  * @package PayU\Exception
  * @author Lucas Mendes <devsdmf@gmail.com>
  */
-class InvalidEnvironmentException extends \RuntimeException
+class InvalidEnvironmentException extends PayUException
 {
 
     protected $message = 'The environment must be an environment constant of PayU class or an implementation of EnvironmentInterface';
