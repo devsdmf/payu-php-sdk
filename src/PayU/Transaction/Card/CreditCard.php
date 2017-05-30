@@ -102,7 +102,7 @@ class CreditCard implements EntityInterface
      */
     public function setCvv($cvv)
     {
-        $this->cvv = substr($cvv,0,3);
+        $this->cvv = substr($cvv,0,4);
 
         return $this;
     }
