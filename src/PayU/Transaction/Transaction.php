@@ -106,6 +106,13 @@ class Transaction implements EntityInterface
     protected $user_agent = null;
 
     /**
+     * The boleto expiration date
+     *
+     * @var string
+     */
+    protected $expirationDate = null;
+
+    /**
      * The Constructor
      */
     public function __construct(){}
@@ -131,6 +138,27 @@ class Transaction implements EntityInterface
     public function getOrder()
     {
         return $this->order;
+    }
+
+    /**
+     * setExpirationDate
+     * 
+     * @param string $value
+     */
+    public function setExpirationDate($value)
+    {
+        $this->expirationDate = (string) $value;
+        return $this;
+    }
+
+    /**
+     * getExpirationDate
+     * 
+     * @return string
+     */
+    public function getExpirationDate()
+    {
+        return $this->expirationDate;
     }
 
     /**
@@ -380,7 +408,8 @@ class Transaction implements EntityInterface
             'deviceSessionId'=>$this->session_id,
             'ipAddress'=>$this->ip_address,
             'cookie'=>$this->cookie,
-            'userAgent'=>$this->user_agent
+            'userAgent'=>$this->user_agent,
+            'expirationDate' => $this->getExpirationDate(),
         ];
     }
 }
